@@ -14,7 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
     "angular": "~1.4.8",
     "d3": "~3.5.10",
     "bootstrap": "~3.3.6",
@@ -24,5 +23,23 @@
   },
   "resolutions": {
     "d3": "~3.5.10"
+  },
+  "overrides": {
+    "angular":{
+      "main": [
+        "angular.min.js"
+      ]
+    },
+    "bootstrap":{
+      "main": [
+        "dist/css/bootstrap.min.css"
+      ]
+    },
+    "angular-ui-router":{
+      "main": "./release/angular-ui-router.min.js"
+    },
+    "d3":{
+      "main": "d3.js"
+    }
   }
 }
