@@ -71,7 +71,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       // },
       data: function($http) {
         // a data file can be provided for dev to avoid loading data.gouv.fr
-        return data || $http.get('https://www.data.gouv.fr/api/1/spatial/coverage/fr%2Fcounty').then(function(result) {
+        return $http.get('https://www.data.gouv.fr/api/1/spatial/coverage/fr%2Fcounty').then(function(result) {
           return result.data;
         });
       }
