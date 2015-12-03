@@ -19,26 +19,28 @@
     "bootstrap": "~3.3.6",
     "angular-ui-router": "~0.2.15",
     "d3-tip": "~0.6.7",
-    "d3-legend": "~1.6.0"
+    "d3-legend": "~1.6.0",
+    "angular-truncate": "*"
   },
   "resolutions": {
-    "d3": "~3.5.10"
+    "d3": "~3.5.10",
+    "angular": "~1.4.8"
   },
   "overrides": {
-    "angular":{
+    "angular": {
       "main": [
         "angular.min.js"
       ]
     },
-    "bootstrap":{
+    "bootstrap": {
       "main": [
         "dist/css/bootstrap.min.css"
       ]
     },
-    "angular-ui-router":{
+    "angular-ui-router": {
       "main": "./release/angular-ui-router.min.js"
     },
-    "d3":{
+    "d3": {
       "main": "d3.js"
     }
   }

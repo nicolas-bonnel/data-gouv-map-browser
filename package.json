@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Access datasets on data-gouv.fr with a map view.",
   "scripts": {
+    "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
