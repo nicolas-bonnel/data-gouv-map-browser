@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router']);
+var app = angular.module('app', ['ui.router','truncate']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -7,8 +7,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/',
     templateUrl: 'view.html',
     controller: function($scope, $http, data) {
-      var width = 960, height = 800;
-      var projection = d3.geo.mercator().center([4, 48]).scale(3000);
+      var width = 700, height = 600;
+      var projection = d3.geo.mercator().center([5.5, 47.5]).scale(2500);
 
       var extent = $scope.extent = d3.extent(data.features, function(d) {
         return d.properties.datasets;
@@ -41,6 +41,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
           return '<strong>' + d.properties.name + ' (' + d.properties.code + ')</strong><br>Datasets: <span style="color:red">' + d.properties.datasets + '</span>';
         });
 
+      $scope.getCatalog = function(uri){
+        $http.get(uri).then(function(result){
+          $scope.catalog = result.data;
+        });
+      };
+
       var svg = d3.select("#map").append("svg").attr("width", width).attr("height", height);
       svg.call(tip);
 
@@ -52,10 +58,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           return quantile(d.properties.datasets);
           // return d3.hsl(180,0.9,0.1+0.5*(d.properties.datasets-extent[0])/(extent[1]-extent[0]))
         }).on('mouseover', tip.show).on('mouseout', tip.hide).on('click',function(d){
-          console.log(d);
-          $http.get('https://www.data.gouv.fr/api/1/datasets/?geozone='+encodeURIComponent(d.id)).then(function(result){
-            console.log(result.data);
-          });
+          $scope.getCatalog('https://www.data.gouv.fr/api/1/datasets/?page_size=5&geozone='+encodeURIComponent(d.id));
         });
 
       column(quantile);
@@ -66,7 +69,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         var svg = div.append("svg");
         svg.append("g").attr("class", "legendQuant").attr("transform", "translate(20,20)");
         svg.select(".legendQuant").call(legend);
-      };
+      }
     },
     resolve: {
       // levels : function($http){
