@@ -53,7 +53,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
           // return d3.hsl(180,0.9,0.1+0.5*(d.properties.datasets-extent[0])/(extent[1]-extent[0]))
         }).on('mouseover', tip.show).on('mouseout', tip.hide).on('click',function(d){
           console.log(d);
-          $http.get('https://www.data.gouv.fr/api/1/datasets?geozone='+encodeURIComponent(d.id)).then(function(result){
+          $http.get('https://www.data.gouv.fr/api/1/datasets/?geozone='+encodeURIComponent(d.id)).then(function(result){
             console.log(result.data);
           });
         });
