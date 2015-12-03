@@ -25,10 +25,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
       });
 
       var numColors = 8;
-      var generator = d3.scale.cubehelix().domain([0, numColors - 1]).range([
-        d3.hsl(-100, 0.95, 0.32),
-        d3.hsl(80, 1.15, 0.62),
-        d3.hsl(220, 0.55, 0.32)
+      var generator = d3.scale.cubehelix().domain([0, numColors/2, numColors]).range([
+        // d3.hsl(-100, 0.95, 0.32),
+        // d3.hsl(80, 1.15, 0.62),
+        // d3.hsl(220, 0.55, 0.32)
+        d3.hsl(-10, 0.8, 0.4),
+        d3.hsl(60, 0.9, 0.7),
+        d3.hsl(110, 0.7, 0.5)
       ]);
 
       var range = d3.range(numColors).map(generator);
